@@ -1,0 +1,217 @@
+@use '../../lib/service.scss' as s;
+.header {
+	@extend .section;
+	background-color: s.color('backgroundDark');
+}
+
+.header__block {
+	display: flex;
+	align-items: center;
+	gap: s.space(8);
+}
+
+.header-content {
+	@extend .section__content;
+	display: flex;
+	justify-content: space-between;
+
+	padding: s.space(4) 0;
+}
+
+.header__icon {
+	@include s.clickable;
+}
+
+.header__link {
+	@include s.clickable;
+	color: s.color('whiteLight');
+
+	font-size: s.size('small');
+}
+
+.ad {
+	@extend .section;
+
+	background-color: s.color('background');
+	padding: s.space(3);
+	font-size: 14px;
+
+	.section__content {
+		display: flex;
+		justify-content: space-between;
+		@media screen and (max-width: s.screen('laptop')) {
+			flex-direction: column;
+		}
+	}
+}
+
+.product {
+	@extend .section;
+	padding-top: s.space(20);
+	padding-bottom: s.space(20);
+
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+
+.product-content {
+	display: grid;
+	gap: s.space(5);
+	text-align: center;
+	align-content: center;
+}
+
+.product__title {
+	font-size: 56px;
+	font-weight: bold;
+}
+
+.product__description {
+	font-size: 28px;
+}
+
+.product-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: s.space(5);
+
+	@include s.clickable;
+}
+
+.product-link {
+	@include s.linkAction;
+}
+
+.product--big {
+	max-height: 700px;
+	height: 100vh;
+
+	background-size: cover;
+	@media screen and (max-width: s.screen('tablet')) {
+		background-size: 150%;
+		max-height: 500px;
+	}
+	@media screen and (max-width: s.screen('mobile')) {
+		background-size: 150%;
+		max-height: 300px;
+	}
+}
+
+.product--small {
+	max-height: 580px;
+	height: 100vh;
+
+	background-size: cover;
+	@media screen and (max-width: s.screen('tablet')) {
+		// background-size: 140%;
+		background-size: clip;
+		max-height: 500px;
+	}
+
+	@media screen and (max-width: s.screen('mobile')) {
+		background-size: 150%;
+		max-height: 300px;
+	}
+
+	.product__title {
+		font-size: 40px;
+	}
+
+	.product__description {
+		font-size: 20px;
+	}
+}
+
+$productImage: (
+	'iphone-pro' '/img/iphone-pro.png',
+	'iphone' '/img/iphone.png',
+	'watch' '/img/watch.png',
+	'trade-in' '/img/trade-in.png',
+	'conference' '/img/conference.png',
+	'ipad' '/img/ipad.png',
+	'buissness' '/img/small_buissness.png',
+	'gift' '/img/gift.png',
+	'card' '/img/card.png',
+);
+
+@each $class, $url in $productImage {
+	.product--#{$class} {
+		background-image: url('#{$url}');
+	}
+}
+
+.product--dark {
+	background-color: #000;
+	.product__title, .product__description {
+		color: s.color('background');
+	}
+}
+
+.product--light {
+	background-color: #fafafa;
+	.product__title, .product__description {
+		color: s.color('textDark');
+	}
+}
+
+.product--top {
+	.product-content {
+		align-content: flex-start;
+	}
+}
+
+.product--bottom {
+	.product-content {
+		align-content: flex-end;
+	}
+}
+
+
+.footer {
+	@extend .section;
+	padding: s.space(10);
+
+}
+
+.footer-content {
+	@extend .section__content;
+
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: s.space(5);
+
+	@media screen and (max-width: s.screen('tablet')) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media screen and (max-width: s.screen('mobile')) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+.footer-item {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: min-content;
+
+	gap: s.space(4);
+}
+
+.footer-item__links {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(10, min-content);
+
+	gap: s.space(3);
+}
+
+.footer-item__title {
+	color: s.color('textDark');
+	font-size: s.size(3);
+	font-weight: 600;
+}
+
+.footer-item__link {
+	color: s.color('backgroundDark');
+}
+
