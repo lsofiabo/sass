@@ -1,0 +1,11 @@
+@use '../../lib/service.scss' as s;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: s.size();
+}
+
+.page {
+  background-color: s.color('background');
+}
+
